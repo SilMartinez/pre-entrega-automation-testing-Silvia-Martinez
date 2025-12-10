@@ -33,7 +33,7 @@ PUT → actualización completa
 PATCH → actualización parcial
 DELETE → eliminación de usuario
 
-Las pruebas de API están correctamente implementadas, pero en mi entorno las llamadas externas a reqres.in están bloqueadas (HTTP 403). Por eso incorporé un mecanismo que detecta esa condición y marca los tests como SKIPPED, evitando que una limitación de red genere falsos fallos en la suite. Este enfoque se utiliza en entornos CI/CD reales donde las APIs externas no siempre están disponibles.
+Las pruebas de API están correctamente implementadas, pero en mi entorno las llamadas externas a reqres.in están bloqueadas (HTTP 403). Por eso incorporé un mecanismo que detecta esa condición y marca los tests como SKIPPED, evitando que una limitación de red genere falsos fallos en la suite.
 
 Tecnologías Utilizadas
 
