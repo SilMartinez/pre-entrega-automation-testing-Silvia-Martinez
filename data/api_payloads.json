@@ -1,0 +1,10 @@
+{
+  "nuevo_usuario": {
+    "name": "Sil Tester",
+    "job": "QA Engineer"
+  },
+  "otro_usuario": {
+    "name": "Demo User",
+    "job": "Automation Tester"
+  }
+}
