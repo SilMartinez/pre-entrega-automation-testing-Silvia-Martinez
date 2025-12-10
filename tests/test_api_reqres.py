@@ -8,10 +8,17 @@ fake = Faker()
 BASE_API = "https://reqres.in/api"
 
 
+def _skip_if_forbidden(resp):
+  
+    if resp.status_code == 403:
+        pytest.skip(f"API reqres.in bloqueada en este entorno (HTTP {resp.status_code})")
+
+
 @pytest.mark.api
 def test_get_users_devuelve_200_y_lista():
-
     resp = requests.get(f"{BASE_API}/users?page=2")
+    _skip_if_forbidden(resp)
+
     assert resp.status_code == 200
 
     body = resp.json()
@@ -22,10 +29,11 @@ def test_get_users_devuelve_200_y_lista():
 
 @pytest.mark.api
 def test_post_create_user_con_faker():
-
     payload = {"name": fake.name(), "job": fake.job()}
 
     resp = requests.post(f"{BASE_API}/users", json=payload)
+    _skip_if_forbidden(resp)
+
     assert resp.status_code == 201
 
     data = resp.json()
@@ -37,20 +45,22 @@ def test_post_create_user_con_faker():
 @pytest.mark.api
 @pytest.mark.parametrize("key", ["nuevo_usuario", "otro_usuario"])
 def test_post_create_user_desde_json(key):
-
     payloads = load_json("api_payloads.json")
     payload = payloads[key]
 
     resp = requests.post(f"{BASE_API}/users", json=payload)
+    _skip_if_forbidden(resp)
+
     assert resp.status_code == 201
 
 
 @pytest.mark.api
 def test_put_update_user():
-
     payload = {"name": "User Put", "job": "QA Senior"}
 
     resp = requests.put(f"{BASE_API}/users/2", json=payload)
+    _skip_if_forbidden(resp)
+
     assert resp.status_code == 200
 
     data = resp.json()
@@ -60,10 +70,11 @@ def test_put_update_user():
 
 @pytest.mark.api
 def test_patch_update_user():
-
     payload = {"job": "Automation Lead"}
 
     resp = requests.patch(f"{BASE_API}/users/2", json=payload)
+    _skip_if_forbidden(resp)
+
     assert resp.status_code == 200
 
     data = resp.json()
@@ -73,6 +84,7 @@ def test_patch_update_user():
 
 @pytest.mark.api
 def test_delete_user():
-
     resp = requests.delete(f"{BASE_API}/users/2")
+    _skip_if_forbidden(resp)
+
     assert resp.status_code == 204

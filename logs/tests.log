@@ -1,0 +1,21 @@
+2025-12-10 12:37:26,944 - INFO - tests - Ejecutando login con usuario=standard_user, should_pass=True
+2025-12-10 12:37:31,227 - INFO - tests - Ejecutando login con usuario=locked_out_user, should_pass=False
+2025-12-10 12:37:35,856 - INFO - tests - Ejecutando login con usuario=problem_user, should_pass=True
+2025-12-10 12:37:41,231 - INFO - tests - Ejecutando login con usuario=invalid_user, should_pass=False
+2025-12-10 12:37:48,705 - INFO - tests - Verificando catálogo de productos
+2025-12-10 12:37:54,685 - INFO - tests - Agregando productos al carrito
+2025-12-10 12:38:01,127 - ERROR - tests - Test 'test_carrito_agrega_y_muestra_productos' falló. Screenshot: reports\screenshots\test_carrito_agrega_y_muestra_productos_20251210_123800_760716.png
+2025-12-10 12:41:39,452 - INFO - tests - Ejecutando login con usuario=standard_user, should_pass=True
+2025-12-10 12:41:43,820 - INFO - tests - Ejecutando login con usuario=locked_out_user, should_pass=False
+2025-12-10 12:41:48,287 - INFO - tests - Ejecutando login con usuario=problem_user, should_pass=True
+2025-12-10 12:41:52,912 - INFO - tests - Ejecutando login con usuario=invalid_user, should_pass=False
+2025-12-10 12:41:58,476 - INFO - tests - Verificando catálogo de productos
+2025-12-10 12:42:03,160 - INFO - tests - Agregando productos al carrito
+2025-12-10 12:42:03,584 - INFO - tests - Cantidad de ítems en el carrito: 2
+2025-12-10 12:45:12,231 - INFO - tests - Ejecutando login con usuario=standard_user, should_pass=True
+2025-12-10 12:45:16,903 - INFO - tests - Ejecutando login con usuario=locked_out_user, should_pass=False
+2025-12-10 12:45:21,241 - INFO - tests - Ejecutando login con usuario=problem_user, should_pass=True
+2025-12-10 12:45:25,564 - INFO - tests - Ejecutando login con usuario=invalid_user, should_pass=False
+2025-12-10 12:45:31,063 - INFO - tests - Verificando catálogo de productos
+2025-12-10 12:45:35,679 - INFO - tests - Agregando productos al carrito
+2025-12-10 12:45:36,101 - INFO - tests - Cantidad de ítems en el carrito: 2

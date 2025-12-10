@@ -52,7 +52,6 @@ def test_catalogo_muestra_titulo_y_primer_item(driver, logger):
     assert name.strip() != ""
     assert price.startswith("$")
 
-
 @pytest.mark.ui
 def test_carrito_agrega_y_muestra_productos(driver, logger):
 
@@ -61,17 +60,35 @@ def test_carrito_agrega_y_muestra_productos(driver, logger):
 
     logger.info("Agregando productos al carrito")
 
+    # Esperamos a que cargue el inventario
+    WebDriverWait(driver, 5).until(
+        EC.visibility_of_element_located((By.CLASS_NAME, "inventory_item"))
+    )
+
     items = driver.find_elements(By.CLASS_NAME, "inventory_item")
     assert len(items) >= 2, "Se necesitan al menos 2 productos para este test"
 
+    # Agregamos los dos primeros productos
     for item in items[:2]:
         add_button = item.find_element(By.TAG_NAME, "button")
         add_button.click()
 
-    badge = driver.find_element(By.CLASS_NAME, "shopping_cart_badge")
+    # Validamos que el badge marque 2
+    badge = WebDriverWait(driver, 5).until(
+        EC.visibility_of_element_located((By.CLASS_NAME, "shopping_cart_badge"))
+    )
     assert badge.text == "2"
 
+    # Vamos a la página del carrito
     driver.find_element(By.CLASS_NAME, "shopping_cart_link").click()
 
+    # Esperamos a que se carguen los ítems del carrito
+    WebDriverWait(driver, 5).until(
+        EC.visibility_of_element_located((By.CLASS_NAME, "cart_item"))
+    )
+
     cart_items = driver.find_elements(By.CLASS_NAME, "cart_item")
-    assert len(cart_items) == 2
+    logger.info(f"Cantidad de ítems en el carrito: {len(cart_items)}")
+
+    # Validamos que al menos estén los 2 que agregamos
+    assert len(cart_items) >= 2

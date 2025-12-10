@@ -39,10 +39,10 @@ def driver(request, logger):
 
     yield drv
 
-    # En el teardown, si el test falló, sacamos screenshot
+    # En el teardown, verificamos si el test falló
     try:
-        # request.node tiene info del test actual
-        if hasattr(request.node, "rep_call") and request.node.rep_call.failed:
+        rep_call = getattr(request.node, "rep_call", None)
+        if rep_call and rep_call.failed:
             test_name = request.node.name
             shot = take_screenshot(drv, name_prefix=test_name)
             logger.error(f"Test '{test_name}' falló. Screenshot: {shot}")
@@ -50,7 +50,7 @@ def driver(request, logger):
         drv.quit()
 
 
-# Hook de pytest para que conftest pueda saber si falló el test
+@pytest.hookimpl(hookwrapper=True)
 def pytest_runtest_makereport(item, call):
 
     outcome = yield
